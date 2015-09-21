@@ -12,7 +12,9 @@ jar {
     baseName = 'javatraviscites'
     version =  '1'
     manifest {
-        attributes 'Main-Class': 'Main'
+        attributes 'Main-Class': 'Main',
+        'Built-Date': new Date(),
+        'Built-JDK': System.getProperty('java.version')
     }
 }
 
