@@ -8,4 +8,9 @@ public class TestSceleton{
 
         assertEquals(0,0);
     }
+    @Test
+    public void testSceletonAlwaysFail(){
+
+        assertEquals(0,1);
+    }
 }
