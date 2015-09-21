@@ -1,23 +1,43 @@
 apply plugin: 'java'
 
 jar {
+    from {
+        configurations.compile.collect {
+            it.isDirectory() ? it : zipTree(it)
+        }
+        configurations.runtime.collect {
+            it.isDirectory() ? it : zipTree(it)
+        }
+    }
+    baseName = 'javatraviscites'
+    version =  '1'
     manifest {
         attributes 'Main-Class': 'Main'
     }
 }
 
 repositories {
-        mavenCentral()
+    mavenCentral()
+    maven {
+        url "http://mvnrepository.com/"
+    }
+    flatDir {
+        dirs 'libs'          // -- add jars from local
+    }
 }
 
 dependencies {
-        testCompile "junit:junit:4.11"
+    compile  "'log4j:log4j:1.2.17"
+    testCompile "junit:junit:4.11"
 }
 
 sourceSets {
-        test {
-            java {
-                srcDirs = ["test"] 
-            }
+    test {
+        java {
+            srcDirs = ["test"]
         }
+    }
 }
+
+
+
